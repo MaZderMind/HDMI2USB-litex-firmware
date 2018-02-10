@@ -313,19 +313,20 @@ static const struct video_timing video_modes[PROCESSOR_MODE_COUNT] = {
 
 		.flags = EDID_DIGITAL | EDID_HSYNC_POS | EDID_VSYNC_POS
 	},
-	// 1920x1080 @ 30.00 Hz    ModeLine "1920x1080" 89.01 1920 2448 2492 2640 1080 1084 1089 1125 +HSync +VSync
+	// 1920x1080 @ 30.00 Hz (GTF)    Modeline "1920x1080_30.00"  80.18  1920 1984 2176 2432  1080 1081 1084 1099  -HSync +Vsync
+	//                                                       a      b    c    d    e     f    g    h    i
 	{
-		.pixel_clock = 8901,
+		.pixel_clock = 8018,  // a * 1000
 
-		.h_active = 1920,
-		.h_blanking = 720,
-		.h_sync_offset = 528,
-		.h_sync_width = 44,
+		.h_active = 1920,     // b
+		.h_blanking = 512,    // e - b
+		.h_sync_offset = 64,  // c - b
+		.h_sync_width = 192,  // d - c
 
-		.v_active = 1080,
-		.v_blanking = 45,
-		.v_sync_offset = 4,
-		.v_sync_width = 5,
+		.v_active = 1080,     // f
+		.v_blanking = 19,     // i - f
+		.v_sync_offset = 1,   // g - f
+		.v_sync_width = 3,    // h - g
 
 		.flags = EDID_DIGITAL | EDID_HSYNC_POS | EDID_VSYNC_POS
 	},
